@@ -11,43 +11,6 @@ void main() {
 class App extends StatelessWidget {
   const App({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-}
-
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // // This widget is the root of your application.
-  // @override
-  // Widget build(BuildContext context) {
-  //   return MaterialApp(
-  //     title: 'Sandwich Shop App',
-  //     theme: ThemeData(
-  //       // This is the theme of your application.
-  //       //
-  //       // TRY THIS: Try running your application with "flutter run". You'll see
-  //       // the application has a purple toolbar. Then, without quitting the app,
-  //       // try changing the seedColor in the colorScheme below to Colors.green
-  //       // and then invoke "hot reload" (save your changes or press the "hot
-  //       // reload" button in a Flutter-supported IDE, or press "r" if you used
-  //       // the command line to start the app).
-  //       //
-  //       // Notice that the counter didn't reset back to zero; the application
-  //       // state is not lost during the reload. To reset the state, use hot
-  //       // restart instead.
-  //       //
-  //       // This works for code too, not just values: Most code changes can be
-  //       // tested with just a hot reload.
-  //       colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
-  //     ),
-  //     home: const MyHomePage(title: 'My Sandwich Shop'),
-  //   );
-  // }
-
 @override
 Widget build(BuildContext context) {
   return MaterialApp(
@@ -55,11 +18,56 @@ Widget build(BuildContext context) {
     home: Scaffold(
       appBar: AppBar(title: const Text('Sandwich Counter')),
       body: const Center(
-        child: Text('Welcome to the Sandwich Shop!'),
+        child: OrderItemDisplay(5, 'Footlong'),
       ),
     ),
   );
 }
+
+}
+
+class OrderItemDisplay extends StatelessWidget {
+  final String itemType;
+  final int quantity;
+
+  const OrderItemDisplay(this.quantity, this.itemType, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+  return Text('$quantity $itemType sandwich(es): ${'🥪' * quantity}');
+}
+}
+
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Sandwich Shop App',
+      theme: ThemeData(
+        // This is the theme of your application.
+        //
+        // TRY THIS: Try running your application with "flutter run". You'll see
+        // the application has a purple toolbar. Then, without quitting the app,
+        // try changing the seedColor in the colorScheme below to Colors.green
+        // and then invoke "hot reload" (save your changes or press the "hot
+        // reload" button in a Flutter-supported IDE, or press "r" if you used
+        // the command line to start the app).
+        //
+        // Notice that the counter didn't reset back to zero; the application
+        // state is not lost during the reload. To reset the state, use hot
+        // restart instead.
+        //
+        // This works for code too, not just values: Most code changes can be
+        // tested with just a hot reload.
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
+      ),
+      home: const MyHomePage(title: 'My Sandwich Shop'),
+    );
+  }
 
 }
 
