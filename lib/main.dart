@@ -33,52 +33,48 @@ class OrderScreen extends StatefulWidget {
 
 class _OrderScreenState extends State<OrderScreen> {
   int _quantity = 0;
-  
-void _increaseQuantity() {
-  if (_quantity < widget.maxQuantity) {
-    setState(() => _quantity++);
-  }
-}
 
-void _decreaseQuantity() {
-  if (_quantity > 0) {
-    setState(() => _quantity--);
+  void _increaseQuantity() {
+    if (_quantity < widget.maxQuantity) {
+      setState(() => _quantity++);
+    }
   }
-}
+
+  void _decreaseQuantity() {
+    if (_quantity > 0) {
+      setState(() => _quantity--);
+    }
+  }
 
   @override
-Widget build(BuildContext context) {
-  return Scaffold(
-    appBar: AppBar(
-      title: const Text('Sandwich Counter'),
-    ),
-    body: Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          OrderItemDisplay(
-            _quantity,
-            'Footlong',
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                onPressed: () => print('Add button pressed!'),
-                child: const Text('Add'),
-              ),
-              ElevatedButton(
-                onPressed: () => print('Remove button pressed!'),
-                child: const Text('Remove'),
-              ),
-            ],
-          ),
-        ],
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Sandwich Counter')),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            OrderItemDisplay(_quantity, 'Footlong'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: _increaseQuantity,
+                  child: const Text('Add'),
+                ),
+                ElevatedButton(
+                  onPressed: _decreaseQuantity,
+                  child: const Text('Remove'),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
-    ),
-  );
+    );
+  }
 }
-}
+
 class OrderItemDisplay extends StatelessWidget {
   final String itemType;
   final int quantity;
@@ -90,15 +86,13 @@ class OrderItemDisplay extends StatelessWidget {
     return Text(
       '$quantity $itemType sandwich(es): ${'🥪' * quantity}',
       style: const TextStyle(
-        color: Colors.green,        
-        fontWeight: FontWeight.bold, 
-        fontSize: 24,                 
+        color: Colors.green,
+        fontWeight: FontWeight.bold,
+        fontSize: 24,
       ),
     );
   }
 }
-
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -129,7 +123,6 @@ class MyApp extends StatelessWidget {
       home: const MyHomePage(title: 'My Sandwich Shop'),
     );
   }
-
 }
 
 class MyHomePage extends StatefulWidget {
@@ -200,7 +193,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // action in the IDE, or press "p" in the console), to see the
           // wireframe for each widget.
           mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
+          children: <Widget>[
             const Text(
               'Welcome to My Sandwich Shop!',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
