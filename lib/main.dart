@@ -19,16 +19,26 @@ Widget build(BuildContext context) {
     home: Scaffold(
       appBar: AppBar(title: const Text('Sandwich Counter')),
       body: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly, // adjust this
-          crossAxisAlignment: CrossAxisAlignment.center,     // and this
-          children: const [
-            OrderItemDisplay(3, 'BLT Sandwich'),
-            OrderItemDisplay(5, 'Club Sandwich'),
-            OrderItemDisplay(2, 'Veggie Sandwich'),
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const OrderItemDisplay(5, 'Footlong'),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () => print('Add button pressed!'),
+              child: const Text('Add'),
+            ),
+            ElevatedButton(
+              onPressed: () => print('Remove button pressed!'),
+              child: const Text('Remove'),
+            ),
           ],
         ),
-      ),
+      ],
+    ),
+  ),
     ),
   );
 }
